@@ -293,15 +293,15 @@
 		:context (= ?a ?b)
 		:implies (not (in ?a ?b))
 	)
-	(:axiom
-		; Two objects cannot be in hand at the same time
-		:vars (?obj - object ?otherobj - object)
-		:context (and
-			(in ?obj hand)
-			(not (= ?obj ?otherobj))
-		)
-		:implies (not (in ?otherobj hand))
-	)
+;	(:axiom
+;		; Two objects cannot be in hand at the same time
+;		:vars (?obj - object ?otherobj - object)
+;		:context (and
+;			(in ?obj hand)
+;			(not (= ?obj ?otherobj))
+;		)
+;		:implies (not (in ?otherobj hand))
+;	)
 	(:axiom
 		; The agent can only be in a location
 		:vars (?obj - object)
@@ -330,15 +330,15 @@
 			(not (= ?obj agent))
 		)
 	)
-	(:axiom
-		; If a reachable object is in a container, the container cannot be closed
-		:vars (?obj - object ?container - object)
-		:context (and
-			(reachable ?obj)
-			(in ?obj ?container)
-		)
-		:implies (not (closed ?container))
-	)
+;	(:axiom
+;		; If a reachable object is in a container, the container cannot be closed
+;		:vars (?obj - object ?container - object)
+;		:context (and
+;			(reachable ?obj)
+;			(in ?obj ?container)
+;		)
+;		:implies (not (closed ?container))
+;	)
 	(:axiom
 		; If an object is open, it cannot be locked
 		:vars (?obj - object)
@@ -373,30 +373,30 @@
 		:context (in ?obj hand)
 		:implies (reachable ?obj)
 	)
-	(:axiom
-		; If an object is reachable, the agent must be in the same location
-		:vars (?obj - object ?loc - location)
-		:context (and
-			(reachable ?obj)
-			(in ?obj ?loc)
-			(not (= ?obj door))
-		)
-		:implies (in agent ?loc)
-	)
-	(:axiom
-		; An object cannot be in two containers at once, unless it is a door
-		:vars (?obj - object ?container - object)
-		:context (and
-			(in ?obj ?container)
-			(not (= ?obj door))
-		)
-		:implies (forall (?othercontainer - object)
-			(when
-				(not (= ?othercontainer ?container))
-				(not (in ?obj ?othercontainer))
-			)
-		)
-	)
+;	(:axiom
+;		; If an object is reachable, the agent must be in the same location
+;		:vars (?obj - object ?loc - location)
+;		:context (and
+;			(reachable ?obj)
+;			(in ?obj ?loc)
+;			(not (= ?obj door))
+;		)
+;		:implies (in agent ?loc)
+;	)
+;	(:axiom
+;		; An object cannot be in two containers at once, unless it is a door
+;		:vars (?obj - object ?container - object)
+;		:context (and
+;			(in ?obj ?container)
+;			(not (= ?obj door))
+;		)
+;		:implies (forall (?othercontainer - object)
+;			(when
+;				(not (= ?othercontainer ?container))
+;				(not (in ?obj ?othercontainer))
+;			)
+;		)
+;	)
 
 	(:derived (reachable_in ?obj - object)
 		; If an object is reachable, all objects contained inside are reachable
